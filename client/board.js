@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import Player from './humanPlayer'
-import Dealer from './dealer'
+import Player from './Player'
+import Dealer from './Dealer'
 import Deck from '../src/deck'
-import MatchResult from './match-result'
+import MatchResult from './MatchResult'
 
 export default class Board extends Component {
    constructor( props ){
@@ -54,7 +54,7 @@ export default class Board extends Component {
   deal() {
     let { deck, dealer, player, phase } = this.state
     if(phase === 1){
-      if(player.bet === 0){ return alert("You Need To Place A Bet!!!") }
+      if(player.bet === 0) return
       let handTotal = 0
       for(let i = 0;i < 2; i++){
         dealer.hand.push( deck.cards.shift() )
@@ -293,21 +293,26 @@ export default class Board extends Component {
     let playerComponent = <Player name={player.name} bet={player.bet} handTotal={player.cardTotal} handArray={player.hand} splitBool={player.split} bank={player.bank} />
     return (
       <div id="foo">
-        <div id="dealerSpace">
+        <div id="dealer-space">
           <div id="dealer"> { dealerComponent } </div>
         </div>
-        <div id="playerSpace">
+        {
+          phase === 1 ? 
+          <div id="bet-message-container"><img id="bet-message-image" src="https://teamgolfusa.com/wp-content/uploads/2016/03/black-large.png"/><h1 id="player-message">Place Bet!</h1></div> : 
+          <div className="start-screen-banner2">React BlackJack</div>
+        }
+        <div id="player-space">
           <div className="hit-stay-buttons">
-            <button id="hit" onClick={this.hit.bind(this)}>Hit</button>
-            <button id="stay" onClick={this.stay.bind(this)}>Stay</button>
+            <button id="hit" onClick={this.hit.bind(this)}>HIT</button>
+            <button id="stay" onClick={this.stay.bind(this)}>STAY</button>
           </div>
           <div className="chips">
-            <button onClick={this.bet.bind(this, "white")} id="whiteChip">1</button>
-            <button onClick={this.bet.bind(this, "red")} id="redChip">5</button>
-            <button onClick={this.bet.bind(this, "green")} id="greenChip">25</button>
-            <button onClick={this.bet.bind(this, "blue")} id="blueChip">50</button>
-            <button onClick={this.bet.bind(this, "black")} id="blackChip">100</button>
-            <button onClick={this.deal.bind(this)} id="set-button">Set-Bet</button>
+            <button onClick={this.bet.bind(this, "white")} id="white-chip">1</button>
+            <button onClick={this.bet.bind(this, "red")} id="red-chip">5</button>
+            <button onClick={this.bet.bind(this, "green")} id="green-chip">25</button>
+            <button onClick={this.bet.bind(this, "blue")} id="blue-chip">50</button>
+            <button onClick={this.bet.bind(this, "black")} id="black-chip">100</button>
+            <button onClick={this.deal.bind(this)} id="set-button">SET-BET</button>
           </div>
           { playerComponent }
         </div>

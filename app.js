@@ -16,7 +16,10 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-if(process.env.NODE_ENV === 'development') {
+if(process.env.NODE_ENV === 'development ') {
+  console.log('------------------------------------');
+  console.log("here");
+  console.log('------------------------------------');
   const compiler = webpack(config)
   const webpackMiddleware = require('webpack-dev-middleware')
   const webpackHotMiddleware = require('webpack-hot-middleware')

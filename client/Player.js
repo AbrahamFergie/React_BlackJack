@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Hand from './hand'
+import Hand from './Hand'
 
 export default class Player extends Component {
   constructor(props) {
@@ -14,7 +14,8 @@ export default class Player extends Component {
     return (
       <div id="player">        
         <div className="bet-bank-display">
-          <span id="bet">{'Your Bet: '}{bet}</span>
+          <div id="bet">{'Your Bet: '}{bet}</div>
+          <hr></hr>
           <div id="bank">Bank: {bank}</div>
         </div>
         <Hand playerName={name} handArray={handArray} handTotal={handTotal}/><br /><br />

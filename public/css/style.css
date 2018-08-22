@@ -1,3 +1,6 @@
+* {
+  font-family: 'Orbitron', sans-serif;
+}
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -11,6 +14,30 @@ body {
 a {
   color: #00B7FF;
 }
+#bank {
+  background-color: #E2E2E2;
+  border-radius: 3px;
+  font-size: 20px;
+  font-weight: bolder;
+  font-size: 1.5em;
+  padding: 5px;
+}
+#bet {
+  background-color: #E2E2E2;
+  font-size: 20px;
+  font-weight: bolder;
+  border-radius: 3px;
+  height: 11%;
+  padding: 5px;
+}
+#bet-message-container {
+  position: absolute;
+  top: 28%;
+  left: 41%;
+}
+#bet-message-image {
+  height: 33%;
+}
 #board {
   display: flex;
   flex-direction: row;
@@ -23,7 +50,21 @@ a {
   position: inherit;
   box-sizing: border-box;
 }
-#dealerSpace {
+#card-suit {
+  color: #ffff00;
+  position: absolute;
+  font-size: 70px;
+  margin-left: 23px;
+}
+#card-rank {
+  position:inherit;
+  border-radius: 2px;
+  width:13%;
+  background-color: black;
+  color: #ffff00;
+  position: inherit;
+}
+#dealer-space {
   position: absolute;
   top: 0.5%;
   height: 26%;
@@ -42,104 +83,7 @@ a {
   border-radius: 5px;
   box-sizing: border-box;
 }
-.card {
-  border:0.5px solid #141e10;
-  border-radius: 7px;
-  height: 140px;
-  width: 95px;
-  float:left;
-  margin-left: 1em;
-  margin-top: 0.5%;
-  background-image:url("http://t09.deviantart.net/J0g3xl2jd0jisHH7q8wgmnkoi4Y=/300x200/filters:fixed_height(100,100):origin()/pre03/3c3d/th/pre/f/2013/303/3/3/lady_deadpool___colors_by_zethkeeper-d6sdqhf.jpg");
-}
-#hit:focus {
-  outline: 0;
-}
-#hit {
-  background-color: #48d1cc;
-  border-radius: 30px 30px 30px 30px;
-  color: #006400;
-  padding: 7px 20px 20px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-style: oblique;
-  font-weight: bolder;
-  font-family: fantasy;
-  font-size: 20px;
-  height: 45px;
-  width: 100px;
-  margin-bottom: 15px;
-}
-#stay:focus {
-  outline: 0;
-}
-.chips {
-  position: absolute;
-  width: 40%;
-  top: -40%;
-  left: 31.4%;
-}
-#stay {
-  background-color: #87ceeb;
-  border-radius: 30px 30px 30px 30px;
-  color: #006400;
-  padding: 7px 20px 20px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-style: oblique;
-  font-weight: bolder;
-  font-family: fantasy;
-  font-size: 20px;
-  height: 45px;
-  width: 100px;
-}
-.hit-stay-buttons {
-  position: absolute;
-  top: -86%;
-  left: 16%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-#split:focus {
-  outline: 0;
-}
-#split {
-  background-color: #48d1cc;
-  border-radius: 30px 30px 30px 30px;
-  color: #006400;
-  padding: 7px 20px 20px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-style: oblique;
-  font-weight: bolder;
-  font-family: fantasy;
-  font-size: 20px;
-  height: 45px;
-  width: 100px;
-  margin-bottom: 15px;
-}
-#player {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-.player-name {
-  padding-left: 16px;
-  margin-bottom: 1em;
-  font-family: inherit;
-  font-size: 2.2em;
-  border-radius: 5px;
-  outline: none;
-}
-#dealerName {
+#dealer-name {
   position: absolute;
   top: 18px;
   font-size: 22px;
@@ -149,49 +93,6 @@ a {
   border-radius: 0px;
   text-align: center;
   padding: 2px 10px 2px 10px;
-}
-#playerName {
-  position: absolute;
-  top: 18px;
-  font-size: 22px;
-  font-weight: 900;
-  font-family: inherit;
-  background-color: #E49B0F;
-  border-radius: 0px;
-  text-align: center;
-  padding: 2px 10px 2px 10px;
-}
-#playerSpace {
-  position: absolute;
-  bottom: 0.5%;
-  height: 26%;
-  width: 100%;
-  left: 0%;
-}
-#bet {
-  border: 0.5px solid #1c1c1c;
-  font-size: 20px;
-  font-family: fantasy;
-  background-color: orange;
-  border-radius: 3px 3px 3px 3px;
-  height: 11%;
-  text-align: center;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-#cardSuit {
-  color: #ffff00;
-  position: absolute;
-  font-size: 70px;
-  margin-left: 23px;
-}
-#cardRank {
-  position:inherit;
-  border-radius: 2px;
-  width:13%;
-  background-color: black;
-  color: #ffff00;
-  position: inherit;
 }
 #hand {
   display: flex;
@@ -210,7 +111,7 @@ a {
   padding-right: 1em;
   min-width: 15em;
 }
-#handValue {
+#hand-value {
   position: absolute;
   top: 110px;
   left: 50%;
@@ -224,72 +125,106 @@ a {
   z-index: 1;
   border-radius: 5px;
 }
-#dHandValue {
-  position: absolute
-  bottom:-900000px;
-  right:-676px;
-  background-color: #87ceeb;
-  border: 2px solid #141e10;
-  color: #006400;
-  padding: 12px 30px;
+#hit {
+  background-color: #48d1cc;
+  border-radius: 30px 30px 30px 30px;
+  color: #1c1c1c;
+  padding: 7px 20px 20px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-style: oblique;
-  font-family: fantasy;
+  font-weight: bolder;
   font-size: 20px;
+  height: 45px;
+  width: 100px;
+  margin-bottom: 15px;
 }
-#bank {
-  background-color: white;
-  border-radius: 3px 3px 3px 3px;
-  font-family: fantasy;
-  font-size: 1.5em;
-  text-align: center;
-  padding-left: 5px;
-  padding-right: 5px;
-  border: 1px solid black;
+#hit:focus {
+  outline: 0;
 }
-.start-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.start-screen-banner {
-  margin-bottom: 1em;
-  height: 1.7em;
-  width: 8em;
-  padding-top: 0px;
-  border-radius: 50%;
-  background-color: #57d86d;
-  font-size: 4.8em;
-  font-weight: 900;
-  color: #fafafa;
-  text-shadow: 0px 4px 10px #1c1c1c;
-  box-shadow: 0px 10px 40px #1c1c1c;
+#player {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.start-screen-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.start-button {
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
-  height: 10%;
-  background-color: darkslategray;
-  color: #fafafa;
-  box-shadow: 0px 10px 40px #1c1c1c;
-  border-radius: 50%;
+  height: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+#player-message {
+  position: absolute;
+  top: 35%;
+  left: 20%;
+  font-family:  'Sigmar One', cursive;
+}
+#player-name {
+  position: absolute;
+  top: 18px;
+  font-size: 22px;
+  font-weight: 900;
   font-family: inherit;
-  font-size: 3em;
+  background-color: #E49B0F;
+  border-radius: 0px;
+  text-align: center;
+  padding: 2px 10px 2px 10px;
+}
+#player-space {
+  position: absolute;
+  bottom: 0.5%;
+  height: 26%;
+  width: 100%;
+  left: 0%;
+}
+#set-button {
+  position: absolute;
+  top: 14px;
+  right: 106%;
+  height: 40px;
+  width: 15%;
+  border-radius: 5px;
+  background-color: #f4d495;
+  color: #000089;
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 1.1em;
   outline: none;
 }
-#whiteChip, #redChip, #greenChip, #blueChip, #blackChip {
-  position: absolute;
+#stay {
+  background-color: #87ceeb;
+  border-radius: 30px 30px 30px 30px;
+  color: #1c1c1c;
+  padding: 7px 20px 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-style: oblique;
+  font-weight: bolder;
+  font-size: 20px;
+  height: 45px;
+  width: 100px;
+}
+#stay:focus {
+  outline: 0;
+}
+#split {
+  background-color: #48d1cc;
+  border-radius: 30px 30px 30px 30px;
+  color: #006400;
+  padding: 7px 20px 20px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-style: oblique;
+  font-weight: bolder;
+  font-size: 20px;
+  height: 45px;
+  width: 100px;
+  margin-bottom: 15px;
+}
+#split:focus {
+  outline: 0;
+}
+#white-chip, #red-chip, #green-chip, #blue-chip, #black-chip {
   background-position: center;
   background-size: 80px 80px;
   border-radius: 200px 200px 200px 200px;
@@ -298,62 +233,115 @@ a {
   text-align: center;
   text-decoration: none;
   font-style: normal;
-  font-weight: normal;
+  font-weight: bolder;
   font-family: inherit;
   font-size: 25px;
   height: 70px;
   width: 75px;
-  padding-top: 12px;
-}
-#whiteChip {
+  padding: 12px 12px 15px 10px;
   outline: none;
-  color: #888888;
-  background-image: url('http://www.how-to-hold-a-party.com/images/poker/poker_chip_white.png');
 }
-#redChip {
+#white-chip {
+  color:  #1c1c1c;
+  background-image: url('http://www.how-to-hold-a-party.com/images/poker/poker-cchip_white.png');
+}
+#red-chip {
   background-image:url('http://www.how-to-hold-a-party.com/images/poker/poker_chip_red.png');
-  outline: none;
-  top:0%;
-  left: 21%;
 }
-#greenChip {
+#green-chip {
   background-image: url('http://cdn3.volusion.com/vuawm.poqar/v/vspfiles/photos/3289-1.jpg?1389763324');
-  outline: none;
-  top:0%;
-  left: 41.5%;
 }
-#blueChip {
+#blue-chip {
   background-image: url("http://poker.marlowcasinochips.com/diceblue.jpg");
-  outline: none;
-  top: 0%;
-  left: 62.5%;
 }
-#blackChip {
+#black-chip {
   background-image:url('http://www.how-to-hold-a-party.com/images/poker/poker_chip_black.png');
-  outline: none;
-  top:0%;
-  left: 84.5%;
-  padding-left: 11px;
-  font-family: inherit;
 }
 .bet-bank-display {
-  position: absolute;
-  top: -86%;
-  right: 16%;
-  width: 15em;
-}
-#set-button {
-  position: absolute;
-  top: 14px;
-  left: -98px;
-  height: 40px;
-  width: 75px;
+  background-color: #fafafa;
   border-radius: 5px;
-  background-color: #f4d495;
-  color: #000089;
+  position: absolute;
+  top: -100%;
+  right: 14%;
+  width: 12%;
+  padding: 20px;
+}
+.card {
+  border:0.5px solid #141e10;
+  border-radius: 7px;
+  height: 140px;
+  width: 95px;
+  float:left;
+  margin-left: 1em;
+  margin-top: 8%;
+  background-image:url("http://t09.deviantart.net/J0g3xl2jd0jisHH7q8wgmnkoi4Y=/300x200/filters:fixed_height(100,100):origin()/pre03/3c3d/th/pre/f/2013/303/3/3/lady_deadpool___colors_by_zethkeeper-d6sdqhf.jpg");
+}
+.chips {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+  top: -40%;
+  left: 31.4%;
+}
+.hit-stay-buttons {
+  position: absolute;
+  height: 55%;
+  top: -98%;
+  left: 16%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.player-name {
+  padding-left: 16px;
+  margin-bottom: 1em;
   font-family: inherit;
+  font-size: 2.2em;
+  border-radius: 5px;
+  outline: none;
+}
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.start-screen-banner, .start-screen-banner2  {
+  margin-bottom: 1em;
+  height: 2.5em;
+  width: 11.5em;
+  padding-top: 0px;
+  border-radius: 50%;
+  background-color: #57d86d;
+  font-size: 4.8em;
   font-weight: 900;
-  font-size: 1.1em;
+  color: #fafafa;
+  text-shadow: 0px 10px 20px #1c1c1c;
+  box-shadow: 0px 10px 40px #1c1c1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.start-screen-banner2 {
+  font-size: 4em;
+}
+.start-screen-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.start-button { 
+  width: 100%;
+  height: 10%;
+  background-color: darkslategray;
+  color: #fafafa;
+  box-shadow: 0px 10px 40px #1c1c1c;
+  border-radius: 15px;
+  font-family: inherit;
+  font-size: 2.5em;
   outline: none;
 }
 .result-winner, .result-loser, .result-draw {

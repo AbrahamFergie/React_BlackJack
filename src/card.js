@@ -9,61 +9,39 @@ const KING = 'K'
 const ACE = 'A'
 
 const SUITS = [SPADES, CLUBS, HEARTS, DIAMONDS]
-const RANKS = [{name:"2", value:2},
-             {name:"3", value:3},
-             {name:"4", value:4},
-             {name:"5", value:5},
-             {name:"6", value:6},
-             {name:"7", value:7},
-             {name:"8", value:8},
-             {name:"9", value:9},
-             {name:"10", value:10},
-             {name:"J", value:10},
-             {name:"Q", value:10},
-             {name:"K", value:10},
-             {name:"A", value:11}]
+const RANKS = [
+  {name:"2", value:2},
+  {name:"3", value:3},
+  {name:"4", value:4},
+  {name:"5", value:5},
+  {name:"6", value:6},
+  {name:"7", value:7},
+  {name:"8", value:8},
+  {name:"9", value:9},
+  {name:"10", value:10},
+  {name:"J", value:10},
+  {name:"Q", value:10},
+  {name:"K", value:10},
+  {name:"A", value:11}
+]
 
 class Card{
-
- constructor(rank, suit, value) {
-
-     this.suit = suit
-     this.rank = rank
-     this.value = value
-
- }
-
-  isAce(){
-   return this.rank === ACE
- }
-
- toString(){
-   return `${this.rank}${this.suit}`
- }
+  constructor(rank, suit, value) {
+    this.suit = suit
+    this.rank = rank
+    this.value = value
+  }
 }
 
- Card.all = function(){
-   const cards = []
-   SUITS.forEach(suit =>{
-     RANKS.forEach(rank =>{
-       cards.push(new Card( rank, suit ))
+Card.all = function(){
+  const cards = []
+  SUITS.forEach(suit =>{
+    RANKS.forEach(rank =>{
+      cards.push(new Card( rank, suit ))
+    })
+  })
 
-     })
-   })
-
-   return _.shuffle(cards)
- }
-
-Card.SUITS     = SUITS
-Card.RANKS     = RANKS
-Card.HEARTS    = HEARTS
-Card.DIAMONDS  = DIAMONDS
-Card.CLUBS     = CLUBS
-Card.SPADES    = SPADES
-Card.ACE       = ACE
-Card.JACK      = JACK
-Card.QUEEN     = QUEEN
-Card.KING      = KING
-
+  return _.shuffle(cards)
+}
 
 module.exports = { all: Card.all }

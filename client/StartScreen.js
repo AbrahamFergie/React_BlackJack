@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Board from './board'
+import Board from './Board'
 
 export default class StartScreen extends Component {
   constructor() {

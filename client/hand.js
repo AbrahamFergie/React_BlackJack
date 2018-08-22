@@ -14,8 +14,8 @@ export default class Hand extends Component{
         return ( key !== 1 ?
           <div>
             <div className="card" key={key}>
-              <div id="cardRank">{ card.rank.name }</div>
-              <span id="cardSuit">{ card.suit }</span>
+              <div id="card-rank">{ card.rank.name }</div>
+              <span id="card-suit">{ card.suit }</span>
             </div>
           </div> : null
         )
@@ -32,8 +32,8 @@ export default class Hand extends Component{
       cards = dHandArray.map( (card, key) => {
         return (
           <div className="card" key={key}>
-            <div id="cardRank">{ card.rank.name }</div>
-            <span id="cardSuit">{ card.suit }</span>
+            <div id="card-rank">{ card.rank.name }</div>
+            <span id="card-suit">{ card.suit }</span>
           </div>
         )
       })
@@ -50,8 +50,8 @@ export default class Hand extends Component{
       cards = handArray.map( (card, key) => {
         return (
           <div className="card" key={key}>
-            <div id="cardRank">{ card.rank.name }</div>
-            <span id="cardSuit">{ card.suit }</span>
+            <div id="card-rank">{ card.rank.name }</div>
+            <span id="card-suit">{ card.suit }</span>
           </div>
         )
       })
@@ -65,19 +65,19 @@ export default class Hand extends Component{
     return ( dHandArray ?
       currentPhase === 3 ?
       <div id="hand">
-        <div id="dealerName">Dealer</div>
-        <div id="handValue">
+        <div id="dealer-name">Dealer</div>
+        <div id="hand-value">
           { dHandTotal }
         </div>
         { this.showDealerCards() }
       </div>:
       <div id="hand">
-        <div id="dealerName">Dealer</div>
+        <div id="dealer-name">Dealer</div>
         { this.showCardUpNDown() }
       </div> :
       <div id="hand">
-        <span id="playerName">{playerName}</span>
-        <div id="handValue">
+        <span id="player-name">{playerName}</span>
+        <div id="hand-value">
           { handTotal }
         </div>
         { this.showCards() }
