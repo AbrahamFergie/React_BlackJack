@@ -33,10 +33,15 @@ a {
 #bet-message-container {
   position: absolute;
   top: 28%;
-  left: 41%;
+  left: 37.5%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 25%;
+  height: 30%;
 }
 #bet-message-image {
-  height: 33%;
+  height: 100%;
 }
 #board {
   display: flex;
@@ -57,12 +62,13 @@ a {
   margin-left: 23px;
 }
 #card-rank {
-  position:inherit;
-  border-radius: 2px;
-  width:13%;
+  border-radius: 0px 0px 5px 0px;
+  width: 25%;
+  text-align: center;
   background-color: black;
   color: #ffff00;
   position: inherit;
+  font-size: 1.2em;
 }
 #dealer-space {
   position: absolute;
@@ -101,7 +107,7 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   background-color: white;
-  background-image: url("../images/pokerImage.jpg");
+  background-image: url("../images/poker-image.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   height: 90%;
@@ -113,13 +119,13 @@ a {
 }
 #hand-value {
   position: absolute;
-  top: 110px;
+  top: 50%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #fafafa;
   height: 1.2em;
   width: 2em;
-  font-size: 25px;
+  font-size: 2.5em;
   text-align: center;
   color: #000f5a;
   z-index: 1;
@@ -155,13 +161,14 @@ a {
 }
 #player-message {
   position: absolute;
-  top: 35%;
-  left: 20%;
-  font-family:  'Sigmar One', cursive;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Sigmar One', cursive;
 }
 #player-name {
   position: absolute;
-  top: 18px;
+  top: 7%;
   font-size: 22px;
   font-weight: 900;
   font-family: inherit;
@@ -182,7 +189,7 @@ a {
   top: 14px;
   right: 106%;
   height: 40px;
-  width: 15%;
+  width: 18%;
   border-radius: 5px;
   background-color: #f4d495;
   color: #000089;
@@ -309,7 +316,7 @@ a {
   align-items: center;
 }
 .start-screen-banner, .start-screen-banner2  {
-  margin-bottom: 1em;
+  margin-bottom: 3em;
   height: 2.5em;
   width: 11.5em;
   padding-top: 0px;
@@ -346,37 +353,37 @@ a {
 }
 .result-winner, .result-loser, .result-draw {
   position: absolute;
+  top: 25%;
+  left: 50%;
+  height: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: translateX(-50%);
-  height: 8.5em;
-  width: 10.7em;
-  text-align: center;
-  font-weight: 900;
-  text-shadow: 0px 5px 5px #888888;
-  box-shadow: 0px 20px 23px orange;
-  border-radius: 10px;
-  background-color: aquamarine;
-  font-size: 2em;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .result-winner {
-  background-image: url("http://tricksmode.com/wp-content/uploads/2017/02/winner-300x242.jpg");
-  top: 7em;
-  left: 50%;
+  box-shadow: 0px 5px 100px 10px #FFE100;
+  width: 30%;
 }
 .result-loser {
-  background-image: url("http://www.countingedge.com/wp-content/uploads/2016/08/casino-bank-robber-300x208.jpg");
-  top: 7em;
-  left: 50%;
-  height: 7.4em;
+  box-shadow: 0px 5px 100px 10px #0014A8;
+  width: 35%;
 }
 .result-draw {
-  background-image: url(https://stephenhow.files.wordpress.com/2013/08/a91d79570d5b39e5076b8950689c832a_xl.jpeg);
-  background-repeat: no-repeat;
-  height: 172px;
-  width: 19.2em;
-  top: 7em;
-  left: 50%;
-  border: 1px solid #888888;
+  box-shadow: 0px 5px 100px 10px #FFE100;
+  height: 16%;
+  width: 35%;
+}
+.result-loser-text {
+  position: absolute;
+  font-size: 300%;
+  font-weight: 900;
+  text-shadow: 0px 5px 15px #1c1c1c;
+}
+.result-winner-image, .result-loser-image, .result-draw-image {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }

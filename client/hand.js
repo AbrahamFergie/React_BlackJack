@@ -15,7 +15,7 @@ export default class Hand extends Component{
           <div>
             <div className="card" key={key}>
               <div id="card-rank">{ card.rank.name }</div>
-              <span id="card-suit">{ card.suit }</span>
+              <div id="card-suit">{ card.suit }</div>
             </div>
           </div> : null
         )
@@ -33,7 +33,7 @@ export default class Hand extends Component{
         return (
           <div className="card" key={key}>
             <div id="card-rank">{ card.rank.name }</div>
-            <span id="card-suit">{ card.suit }</span>
+            <div id="card-suit">{ card.suit }</div>
           </div>
         )
       })
@@ -51,7 +51,7 @@ export default class Hand extends Component{
         return (
           <div className="card" key={key}>
             <div id="card-rank">{ card.rank.name }</div>
-            <span id="card-suit">{ card.suit }</span>
+            <div id="card-suit">{ card.suit }</div>
           </div>
         )
       })
@@ -76,7 +76,7 @@ export default class Hand extends Component{
         { this.showCardUpNDown() }
       </div> :
       <div id="hand">
-        <span id="player-name">{playerName}</span>
+        <div id="player-name">{playerName}</div>
         <div id="hand-value">
           { handTotal }
         </div>

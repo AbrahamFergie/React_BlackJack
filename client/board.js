@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Player from './Player'
 import Dealer from './Dealer'
-import Deck from '../src/deck'
+import Deck from '../src/Deck'
 import MatchResult from './MatchResult'
 
 export default class Board extends Component {
@@ -20,20 +20,14 @@ export default class Board extends Component {
   }
 
   componentDidMount() {
-    this.setupPlayers()
-    this.setupGame()
+    this.setupDeckAndPlayers()
   }
 
-  setupGame() {
-    setTimeout(this.bet.bind(this), 2000)
-  }
-
-  setupPlayers() {
-    let { phase } = this.state
+  setupDeckAndPlayers() {
+    let { deck, phase } = this.state
     const dealer = {
       name: 'Dealer',
       stay: false,
-      bust: false,
       hand: [],
       cardTotal: 0
     }
@@ -42,36 +36,28 @@ export default class Board extends Component {
       bank: 1000,
       bet: 0,
       stay: false,
-      bust: false,
       split: false,
       hand: [],
       cardTotal: 0
     }
     phase = 1
-    this.setState(Object.assign(this.state, { dealer, player, phase }))
+    deck.generateCards()
+    this.setState(Object.assign(this.state, { dealer, player, phase, deck }))
   }
 
   deal() {
     let { deck, dealer, player, phase } = this.state
+
     if(phase === 1){
       if(player.bet === 0) return
-      let handTotal = 0
-      for(let i = 0;i < 2; i++){
-        dealer.hand.push( deck.cards.shift() )
-        player.hand.push( deck.cards.shift() )
-      }
 
-      for(let i = 0; i < player.hand.length; i++){
-        handTotal = handTotal + player.hand[i].rank.value
+      for(let i = 0;i < 2; i++){
+        dealer.hand.push( deck.cardPile.shift() )
+        player.hand.push( deck.cardPile.shift() )
       }
-      player.cardTotal = handTotal
-      handTotal = 0
-      for(let i = 0; i < dealer.hand.length; i++){
-        handTotal = handTotal + dealer.hand[i].rank.value
-      }
-      dealer.cardTotal = handTotal
-      handTotal = 0
-      player.bet = parseInt(player.bet)
+      player.cardTotal = player.hand.reduce((acc, curr) => acc + curr.rank.value, 0)
+      dealer.cardTotal = dealer.hand.reduce((acc, curr) => acc + curr.rank.value, 0)
+
       phase = 2
       this.setState(Object.assign(this.state, { player, dealer, deck, phase }))
     }
@@ -83,47 +69,31 @@ export default class Board extends Component {
       if(roundResult) roundResult = null
       switch(chipType){
         case "white":
-        player.bet = player.bet + 1
-        player.bank -= 1
-        break
+          player.bet = player.bet + 1
+          player.bank -= 1
+          break
         case "red":
-        player.bet = player.bet + 5
-        player.bank -= 5
-        break
+          player.bet = player.bet + 5
+          player.bank -= 5
+          break
         case "green":
-        player.bet = player.bet + 25
-        player.bank -= 25
-        break
+          player.bet = player.bet + 25
+          player.bank -= 25
+          break
         case "blue":
-        player.bet = player.bet + 50
-        player.bank -= 50
-        break
+          player.bet = player.bet + 50
+          player.bank -= 50
+          break
         case "black":
-        player.bet = player.bet + 100
-        player.bank -= 100
-        break
+          player.bet = player.bet + 100
+          player.bank -= 100
+          break
       }
+      player.bet = parseInt(player.bet)
       this.setState(Object.assign(this.state, { player, roundResult, phase }))
     }
   }
 
-  bust(player) {
-    if(player.cardTotal > 21) {
-      for(var i = 0; i < player.hand.length; i++) {
-        if(player.hand[i].rank.name === "A" && player.hand[i].rank.value !== 1) {
-          player.hand[i].rank.value = 1
-          break
-        } else {
-          break
-        }
-        break
-      }
-    }else {
-      return false
-    }
-    this.setState(Object.assign(this.state, { player }))
-    return false
-  }
   dealerBust(dealer) {
     if(dealer.cardTotal > 21) {
       for(let i = 0; i < dealer.hand.length; i++) {
@@ -135,70 +105,60 @@ export default class Board extends Component {
           return true
         }
       }
-    }else {
-      return false
     }
     return false
   }
 
   checkForAce(hand) {
     for (var i = 0; i < hand.length; i++) {
-      if(hand[i].rank.name === "A"){
+      if(hand[i].rank.name === "A" && !hand[i].checked){
         hand[i].rank.value = 1
+        hand[i].checked = true
         return true
       }
     }
     return false
   }
 
-  getHandValue() {
-    let { player } = this.state
-    let handVal = 0
-    for(let i = 0; i < player.hand.length; i++){
-      handVal = handVal + player.hand[i].rank.value
-    }
-    return handVal
+  getHandValue(hand) {
+    return hand.reduce((acc, curr) => acc + curr.rank.value, 0)
   }
 
   hit() {
     let { deck, player, dealer, phase } = this.state
-    if(phase === 2){
-      this.bust(player) ?
-      this.gameFlow() : player.hand.push( deck.cards.shift() )
 
-      let handTotal = this.getHandValue()
-      player.cardTotal = handTotal
-      handTotal = 0
+    if(phase === 2){
+      player.hand.push( deck.cardPile.shift() )
+      player.cardTotal = this.getHandValue(player.hand)
       if(player.cardTotal > 21){
         if(!this.checkForAce(player.hand)){
           this.setState(Object.assign(this.state, { player, dealer, deck }))
           setTimeout(this.settle.bind(this),700)
         }
       }
-      player.cardTotal = this.getHandValue()
+      player.cardTotal = this.getHandValue(player.hand)
 
       this.setState(Object.assign(this.state, { player, dealer, deck }))
+      if(player.hand.length >= 5 && player.cardTotal <= 21) {
+        setTimeout(this.settle.bind(this), 1000)
+      }
     }
   }
+  
   dealerHit() {
     let { dealer, deck } = this.state
 
     if(this.dealerBust(dealer)){
       this.gameFlow()
     }else{
-      dealer.hand.push( deck.cards.shift() )
+      dealer.hand.push( deck.cardPile.shift() )
     }
-    let handTotal = 0
+    dealer.cardTotal = this.getHandValue(dealer.hand)
 
-    for(let i = 0; i < dealer.hand.length; i++){
-      handTotal = handTotal + dealer.hand[i].rank.value
-    }
-    dealer.cardTotal = handTotal
-    handTotal = 0
     this.setState(Object.assign(this.state, { dealer, deck }))
-    this.anotherTimeOut()
+    setTimeout(this.gameFlow.bind(this), 1000)
   }
-
+  
   stay() {
     let { player, dealer, phase } = this.state
 
@@ -206,25 +166,21 @@ export default class Board extends Component {
       player.stay = true
       phase = 3
       this.setState(Object.assign(this.state, { player, dealer, phase }))
-      this.anotherTimeOut()
+      setTimeout(this.gameFlow.bind(this), 1000)
     }
   }
-  anotherTimeOut() {
-    return setTimeout(this.gameFlow.bind(this), 1000)
-    this.clearTimeout(timeout)
-  }
 
-  splitInitialize() {
-    let { player, deck } = this.state
-    //send signal to player to split hand in two
-    // if(player.hand[0] === player.hand[1]){}
-    player.split = true
-    // player.push(player.hand[0])
-    this.setState(Object.assign(this.state, { player, deck }))
-    //apply current bet to both hands and subtract that same amount from bank
-    //deal another card to each hand from deck
-    //calculate both hand values
-  }
+  // splitInitialize() {
+  //   let { player, deck } = this.state
+  //   //send signal to player to split hand in two
+  //   // if(player.hand[0] === player.hand[1]){}
+  //   player.split = true
+  //   // player.push(player.hand[0])
+  //   this.setState(Object.assign(this.state, { player, deck }))
+  //   //apply current bet to both hands and subtract that same amount from bank
+  //   //deal another card to each hand from deck
+  //   //calculate both hand values
+  // }
 
   gameFlow() {
     let { player, dealer } = this.state
@@ -241,7 +197,6 @@ export default class Board extends Component {
   }
 
   dealerTurn(dealer) {
-
     if(dealer.cardTotal >= 17){
       dealer.stay = true
       this.gameFlow()
@@ -249,21 +204,31 @@ export default class Board extends Component {
       this.dealerHit()
     }
   }
+  
   settle() {
     let { dealer, player, roundResult, phase } = this.state
 
     if(player.cardTotal === dealer.cardTotal){
       roundResult = <MatchResult result='draw' bet={player.bet} />
       player.bank += player.bet
-    }else if(21 - player.cardTotal  < 21 - dealer.cardTotal && player.cardTotal < 22 && player.cardTotal > dealer.cardTotal || dealer.cardTotal > 21){
+    }else if(
+      21 - player.cardTotal  < 21 - dealer.cardTotal && 
+      player.cardTotal < 22 && 
+      player.cardTotal > dealer.cardTotal || dealer.cardTotal > 21
+    ){
+      roundResult = <MatchResult result='winner' bet={player.bet} />
+      player.bank = (player.bet * 2) + player.bank
+    }else if(player.hand.length >= 5 && player.cardTotal <= 21){
       roundResult = <MatchResult result='winner' bet={player.bet} />
       player.bank = (player.bet * 2) + player.bank
     }else{
+      console.log("lost, player.hand, dealer.hand", player.hand, dealer.hand)
       roundResult = <MatchResult result='loser' bet={player.bet} />
     }
     this.setState(Object.assign(this.state, { player, roundResult, phase }))
-    this.reset()
+    setTimeout(this.reset.bind(this), 2000)
   }
+  
   reset() {
     let { player, dealer, deck, roundResult, phase } = this.state
 
@@ -277,15 +242,21 @@ export default class Board extends Component {
     player.cardTotal = 0
 
     phase = 1
+    roundResult = null
 
     deck = new Deck()
+    deck.generateCards()
     this.setState(Object.assign(this.state, {
       player, dealer, deck, roundResult, phase
     }))
-    setTimeout(this.bet.bind(this), 2000)
   }
+  //
+
+  // Note** Split functionality coming soon!
 
   // <button id="split" onClick={this.splitInitialize.bind(this)}>Split</button>
+
+  //
   render () {
     let { dealer, deck, player, roundResult, phase } = this.state
 
@@ -298,7 +269,9 @@ export default class Board extends Component {
         </div>
         {
           phase === 1 ? 
-          <div id="bet-message-container"><img id="bet-message-image" src="https://teamgolfusa.com/wp-content/uploads/2016/03/black-large.png"/><h1 id="player-message">Place Bet!</h1></div> : 
+          <div id="bet-message-container">
+            <img id="bet-message-image" src="https://teamgolfusa.com/wp-content/uploads/2016/03/black-large.png"/>
+            <h1 id="player-message">Place Bet!</h1></div> :
           <div className="start-screen-banner2">React BlackJack</div>
         }
         <div id="player-space">

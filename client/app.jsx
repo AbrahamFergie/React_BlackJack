@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import StartScreen from './start_screen'
+import StartScreen from './StartScreen'
 
 export default class App extends Component {
   constructor(props){
