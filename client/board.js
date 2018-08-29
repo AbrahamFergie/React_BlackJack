@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import Player from './Player.js'
-import Dealer from './Dealer.js'
+import Dealer from './dealer.js'
 import Deck from '../src/deck.js'
 import MatchResult from './MatchResult.js'
 
