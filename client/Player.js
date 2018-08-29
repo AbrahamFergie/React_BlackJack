@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Hand from './hand'
+import Hand from './hand.js'
 
 export default class Player extends Component {
   constructor(props) {

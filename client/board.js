@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import Player from './Player'
-import Dealer from './Dealer'
-import Deck from '../src/deck'
-import MatchResult from './MatchResult'
+import Player from './Player.js'
+import Dealer from './Dealer.js'
+import Deck from '../src/deck.js'
+import MatchResult from './MatchResult.js'
 
 export default class Board extends Component {
    constructor( props ){
