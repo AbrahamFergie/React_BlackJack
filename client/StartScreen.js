@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import Board from './Board'
 
 export default class StartScreen extends Component {
-  constructor() {
+  constructor(props) {
+    super(props)
     this.state = {
       visibility: true,
       value: ''
