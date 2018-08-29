@@ -4,7 +4,6 @@ import Board from './Board'
 
 export default class StartScreen extends Component {
   constructor() {
-    super()
     this.state = {
       visibility: true,
       value: ''

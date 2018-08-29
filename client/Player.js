@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import Hand from './hand'
 
 export default class Player extends Component {
