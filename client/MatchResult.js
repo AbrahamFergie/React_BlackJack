@@ -20,7 +20,7 @@ export default class MatchResult extends Component {
              </div>
     }
     if(resultImage === "result-draw"){
-      return <div className="result-draw"><img className="result-draw-image" src="../draw-pic.jpg"/></div>
+      return <div className="result-draw"><img className="result-draw-image" src="../images/draw-pic.jpg"/></div>
     }
   }
 }

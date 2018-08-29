@@ -6,8 +6,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   height:auto;
   width:auto;
-  /*background-color: #48a358;*/
-  background-image:  url("https://zappreleases-15b2.kxcdn.com/ll/ZBlackJackWeb/blackjackassets/promoassets/FBCanvasBackground.jpg");
+  background-image:  url("../images/main-background.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -250,19 +249,19 @@ a {
 }
 #white-chip {
   color:  #1c1c1c;
-  background-image: url('http://www.how-to-hold-a-party.com/images/poker/poker-cchip_white.png');
+  background-image: url("../images/white-poker-chip.jpg");
 }
 #red-chip {
-  background-image:url('http://www.how-to-hold-a-party.com/images/poker/poker_chip_red.png');
+  background-image:url("../images/red-poker-chip.png");
 }
 #green-chip {
-  background-image: url('http://cdn3.volusion.com/vuawm.poqar/v/vspfiles/photos/3289-1.jpg?1389763324');
+  background-image: url("../images/green-poker-chip.jpg");
 }
 #blue-chip {
-  background-image: url("http://poker.marlowcasinochips.com/diceblue.jpg");
+  background-image: url("../images/blue-poker-chip.jpg");
 }
 #black-chip {
-  background-image:url('http://www.how-to-hold-a-party.com/images/poker/poker_chip_black.png');
+  background-image:url('../images/black-poker-chip.png');
 }
 .bet-bank-display {
   background-color: #fafafa;
@@ -281,7 +280,7 @@ a {
   float:left;
   margin-left: 1em;
   margin-top: 8%;
-  background-image:url("http://t09.deviantart.net/J0g3xl2jd0jisHH7q8wgmnkoi4Y=/300x200/filters:fixed_height(100,100):origin()/pre03/3c3d/th/pre/f/2013/303/3/3/lady_deadpool___colors_by_zethkeeper-d6sdqhf.jpg");
+  background-image:url("../images/card-back.jpg");
 }
 .chips {
   position: absolute;

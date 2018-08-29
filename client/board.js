@@ -270,7 +270,7 @@ export default class Board extends Component {
         {
           phase === 1 ? 
           <div id="bet-message-container">
-            <img id="bet-message-image" src="https://teamgolfusa.com/wp-content/uploads/2016/03/black-large.png"/>
+            <img id="bet-message-image" src="images/place-bet-pic.png"/>
             <h1 id="player-message">Place Bet!</h1></div> :
           <div className="start-screen-banner2">React BlackJack</div>
         }
