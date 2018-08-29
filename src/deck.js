@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-import Card from './Card'
+import Card from './card'
 
 export default class Deck {
   constructor () {

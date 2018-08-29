@@ -1,5 +1,5 @@
 {
-  "name": "BlackJack",
+  "name": "react_blackJack",
   "version": "1.0.0",
   "description": "A simple react app that says hello",
   "main": "app.js",
@@ -23,9 +23,9 @@
   "author": "Abraham Ferguson",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AbrahamFergie/BlackJack/issues"
+    "url": "https://github.com/AbrahamFergie/React_BlackJack/issues"
   },
-  "homepage": "https://github.com/AbrahamFergie/BlackJack#readme",
+  "homepage": "https://github.com/AbrahamFergie/React_BlackJack#readme",
   "devDependencies": {
     "webpack-cli": "^2.0.9",
     "webpack-dev-middleware": "^1.8.4",

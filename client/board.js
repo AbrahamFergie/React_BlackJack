@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import Player from './Player'
 import Dealer from './Dealer'
-import Deck from '../src/Deck'
+import Deck from '../src/deck'
 import MatchResult from './MatchResult'
 
 export default class Board extends Component {
@@ -185,11 +185,11 @@ export default class Board extends Component {
   gameFlow() {
     let { player, dealer } = this.state
 
-    if( player.stay == true && dealer.stay == true ){
+    if( player.stay === true && dealer.stay === true ){
       this.setState(Object.assign(this.state, { player, dealer }))
       this.settle()
     }else{
-      if( player.stay == true ){
+      if( player.stay === true ){
         this.setState(Object.assign(this.state, { player, dealer }))
         this.dealerTurn(dealer)
       }
@@ -258,7 +258,7 @@ export default class Board extends Component {
 
   //
   render () {
-    let { dealer, deck, player, roundResult, phase } = this.state
+    let { dealer, player, roundResult, phase } = this.state
 
     let dealerComponent = <Dealer name={dealer.name} handTotal={dealer.cardTotal} dHandArray={dealer.hand} gamePhase={phase} />
     let playerComponent = <Player name={player.name} bet={player.bet} handTotal={player.cardTotal} handArray={player.hand} splitBool={player.split} bank={player.bank} />
